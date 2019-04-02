@@ -102,10 +102,10 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
 beta_simulator_linux/
 self-driving-data-capture/
-videos/
+model/image_results/
+model/video_results/
 __pycache__/
-dataset_videos/
-module_classes_and_resources/
-model_resuts/
+self-driving-data-capture/
