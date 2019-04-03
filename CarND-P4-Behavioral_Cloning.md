@@ -1,8 +1,45 @@
+<!-- 
+**********************************************************************
+https://review.udacity.com/#!/rubrics/432/view
+
+Project Specification
+Behavioral Cloning
+
+Required Files
+    1 - Are all required files submitted?: The submission includes a model.py file, drive.py, model.h5 a writeup report and video.mp4.
+
+Quality of Code
+    2 - Is the code functional?:The model provided can be used to successfully operate the simulation.
+    3 - Is the code usable and readable?: The code in model.py uses a Python generator, if needed, to generate data for training rather than storing the training data in memory. The model.py code is clearly organized and comments are included where needed.
+
+Model Architecture and Training Strategy
+    4 - Has an appropriate model architecture been employed for the task?: The neural network uses convolution layers with appropriate filter sizes. Layers exist to introduce nonlinearity into the model. The data is normalized in the model.
+    5 - Has an attempt been made to reduce overfitting of the model?: Train/validation/test splits have been used, and the model uses dropout layers or other methods to reduce overfitting.
+    6 - Have the model parameters been tuned appropriately?: Learning rate parameters are chosen with explanation, or an Adam optimizer is used. 
+    7 - Is the training data chosen appropriately?: Training data has been chosen to induce the desired behavior in the simulation (i.e. keeping the car on the track).
+
+Architecture and Training Documentation
+    8 - Is the solution design documented?: The README thoroughly discusses the approach taken for deriving and designing a model architecture fit for solving the given problem.
+    9 - Is the model architecture documented?: The README provides sufficient details of the characteristics and qualities of the architecture, such as the type of model used, the number of layers, the size of each layer. Visualizations emphasizing particular qualities of the architecture are encouraged. Here is one such tool for visualization.
+    10 - Is the creation of the training dataset and training process documented?: The README describes how the model was trained and what the characteristics of the dataset are. Information such as how the dataset was generated and examples of images from the dataset must be included.
+
+Simulation
+    11 - Is the car able to navigate correctly on test data?: No tire may leave the drivable portion of the track surface. The car may not pop up onto ledges or roll over any surfaces that would otherwise be considered unsafe (if humans were in the vehicle).
+
+Suggestions to Make Your Project Stand Out!
+    12 - The simulator contains two tracks. To meet specifications, the car must successfully drive around track one. Track two is more difficult. See if you can get the car to stay on the road for track two as well.
+
+**********************************************************************
+-->
+
 # **Behavioral Cloning** 
 
 ## Writeup Template
 
 ### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+
+<img src="writeup_files/banner.png" alt="drawing" width="800"/>  
+
 
 ---
 
@@ -127,3 +164,14 @@ After the collection process, I had X number of data points. I then preprocessed
 I finally randomly shuffled the data set and put Y% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+---
+
+> **Date:** &nbsp; 03/20/2019  
+> **Programmer:** &nbsp;John A. Betancourt G.   
+> **Mail:** &nbsp;john.betancourt93@gmail.com  
+> **Web:** &nbsp; www.linkedin.com/in/jhon-alberto-betancourt-gonzalez-345557129 
+
+<img src="https://media2.giphy.com/media/ZVik7pBtu9dNS/giphy.gif" alt="drawing" width="500"/> 
+
+<!-- Sorry for my English -->

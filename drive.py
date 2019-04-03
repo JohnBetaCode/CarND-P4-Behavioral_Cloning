@@ -21,8 +21,10 @@ app = Flask(__name__)
 model = None
 prev_image_array = None
 
+SET_SPEED = 18
 
 class SimplePIController:
+    
     def __init__(self, Kp, Ki):
         self.Kp = Kp
         self.Ki = Ki
@@ -42,11 +44,8 @@ class SimplePIController:
 
         return self.Kp * self.error + self.Ki * self.integral
 
-
 controller = SimplePIController(0.1, 0.002)
-set_speed = 9
-controller.set_desired(set_speed)
-
+controller.set_desired(SET_SPEED)
 
 @sio.on('telemetry')
 def telemetry(sid, data):
@@ -77,12 +76,10 @@ def telemetry(sid, data):
         # NOTE: DON'T EDIT THIS.
         sio.emit('manual', data={}, skip_sid=True)
 
-
 @sio.on('connect')
 def connect(sid, environ):
     print("connect ", sid)
     send_control(0, 0)
-
 
 def send_control(steering_angle, throttle):
     sio.emit(
@@ -93,14 +90,16 @@ def send_control(steering_angle, throttle):
         },
         skip_sid=True)
 
-
 if __name__ == '__main__':
+
     parser = argparse.ArgumentParser(description='Remote Driving')
+    
     parser.add_argument(
         'model',
         type=str,
         help='Path to model h5 file. Model should be on the same path.'
     )
+
     parser.add_argument(
         'image_folder',
         type=str,
@@ -108,6 +107,7 @@ if __name__ == '__main__':
         default='',
         help='Path to image folder. This is where the images from the run will be saved.'
     )
+
     args = parser.parse_args()
 
     # check that model Keras version is same as local Keras version

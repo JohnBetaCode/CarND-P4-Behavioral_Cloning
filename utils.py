@@ -78,33 +78,38 @@ def print_list_text(img_src, str_list, origin=(0, 0), color=(0, 255, 255),
 
     return img_src
 
-def load_dataset(data_path):
+def load_dataset(data_paths, csv_name="driving_log.csv"):
     
     """ load dataset from path 
     Args:
+        data_paths: `list` of sting with paths to datasets
+        csv_name: `string` name of csv files 
     Returns: 
+        data" `list` of dictionaries with datasets information
     """
 
     data = []
-    with open(data_path) as csvfile:
-        reader = csv.reader(csvfile)
-        for idx, line in enumerate(reader):
-            if idx:
-                data.append({
-                    "img_c":line[0],
-                    "img_l":line[1],
-                    "img_r":line[2],
-                    "steering": float(line[3]),
-                    })
+    for idx_path, data_path in enumerate(data_paths):
+        data_path = os.path.join(data_path, csv_name)
+        with open(data_path) as csvfile:
+            reader = csv.reader(csvfile)
+            for idx, line in enumerate(reader):
+                if idx:
+                    data.append({
+                        "img_c":line[0],
+                        "img_l":line[1],
+                        "img_r":line[2],
+                        "steering": float(line[3]),
+                        })
+            print("From .... {}: {} samples".format(data_paths[idx_path][-30:], idx))
 
     return data
 
-def create_video(data, cam_label, dst_path, src_path, file_name, fps=15., 
+def create_video(cam_label, dst_path, src_path, file_name, fps=15., 
     video_size=(320, 160)):
 
     """ Create video from images list 
     Args:
-        data" `list` of dictionaries with data
         cam_label" `string` camera label to record video
         dst_path" `string` path to save videos
         src_path" `string` path  where data is stored
@@ -113,6 +118,8 @@ def create_video(data, cam_label, dst_path, src_path, file_name, fps=15.,
         video_size" `tuple` desired video size (width, height)
     Returns: 
     """
+
+    data = load_dataset([src_path], csv_name="driving_log.csv")
 
     # Define the codec and format and create VideoWriter object
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")  # Codec H264, format MP4
@@ -127,12 +134,11 @@ def create_video(data, cam_label, dst_path, src_path, file_name, fps=15.,
     # Release video variable memory
     video_out.release()
 
-def reproduce_dataset(data, fps=15., loop=True, sc_fc=2., up_limit=0, 
+def reproduce_dataset(fps=15., loop=True, sc_fc=2., up_limit=0, 
     down_limit=0, dataset_path="", CORRECTION=0.2):
 
     """ show dataset 
     Args:
-        images: `list` of cv2.math images 
         fps: `float` desired video frame rate
         loop: `boolean` enable/disable looping
         sc_fc: `float` scaling factor to show video
@@ -143,6 +149,8 @@ def reproduce_dataset(data, fps=15., loop=True, sc_fc=2., up_limit=0,
     Returns: 
     """
 
+    data = load_dataset([dataset_path], csv_name="driving_log.csv")
+
     cam_labels = ("img_l", "img_c", "img_r")
     reproduce = True
     while True:
@@ -151,7 +159,7 @@ def reproduce_dataset(data, fps=15., loop=True, sc_fc=2., up_limit=0,
             if reproduce:
                 imgs = []
                 for label in cam_labels:
-                    img = cv2.imread(os.path.join(dataset_path, 'IMG', data[idx][label]))
+                    img = cv2.imread(data[idx][label])
                     if up_limit or down_limit:
                         # Draw superior limit
                         img2 = cv2.rectangle(img.copy(),(0,0),(img.shape[1], up_limit),(0,0,0), -1)
