@@ -21,7 +21,7 @@ app = Flask(__name__)
 model = None
 prev_image_array = None
 
-SET_SPEED = 18
+SET_SPEED = 10
 
 class SimplePIController:
     

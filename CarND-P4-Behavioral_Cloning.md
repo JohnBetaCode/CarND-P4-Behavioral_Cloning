@@ -29,21 +29,20 @@ Simulation
 Suggestions to Make Your Project Stand Out!
     12 - The simulator contains two tracks. To meet specifications, the car must successfully drive around track one. Track two is more difficult. See if you can get the car to stay on the road for track two as well.
 
+
+https://medium.com/@erikshestopal/udacity-behavioral-cloning-using-keras-ff55055a64c
+
+https://medium.com/deep-learning-turkey/behavioral-cloning-udacity-self-driving-car-project-generator-bottleneck-problem-in-using-gpu-182ee407dbc5
+
 **********************************************************************
 -->
 
-# **Behavioral Cloning** 
+# **P3 - Behavioral Cloning** 
+### **Description**
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+In this project, I used what I've learned about deep neural networks and convolutional neural networks to clone driving behavior. I trained, validated and tested a model using Keras. The model outputs the steering angle to control an autonomous vehicle in a simulated enviorement.
 
 <img src="writeup_files/banner.png" alt="drawing" width="800"/>  
-
-
----
-
-**Behavioral Cloning Project**
 
 The goals / steps of this project are the following:
 * Use the simulator to collect data of good driving behavior
@@ -52,48 +51,46 @@ The goals / steps of this project are the following:
 * Test that the model successfully drives around track one without leaving the road
 * Summarize the results with a written report
 
-
-[//]: # (Image References)
-
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
-
-## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
-
 ---
 ### Files Submitted & Code Quality
 
 #### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
-* model.py containing the script to create and train the model
-* drive.py for driving the car in autonomous mode
-* model.h5 containing a trained convolution neural network 
-* writeup_report.md or writeup_report.pdf summarizing the results
+* The [`Traffic_Sign_Classifier.ipynb`](https://github.com/JohnBetaCode/CarND-P4-Behavioral_Cloning/blob/master/CarND-P4-Behavioral_Cloning.ipynb) containing the script/Notebook to create and train the model
+* [`Traffic_Sign_Classifier.MD`](https://github.com/JohnBetaCode/CarND-P4-Behavioral_Cloning/blob/master/CarND-P4-Behavioral_Cloning.md) or writeup_report.pdf summarizing the results
+* The [`utils.py`](https://github.com/JohnBetaCode/CarND-P4-Behavioral_Cloning/blob/master/utils.py) with utils function to visualize and traing datasets.
+* The [`drive.py`](https://github.com/JohnBetaCode/CarND-P4-Behavioral_Cloning/blob/master/drive.py) for driving the car in autonomous mode
+* The [`model.h5`](PUT LINK HERE) containing a trained convolution neural network 
 
 #### 2. Submission includes functional code
-Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
+Using the Udacity provided [simulator](https://github.com/udacity/self-driving-car-sim) and my `drive.py` file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
+or you can run everything and much easier runing the final blocks in the `Traffic_Sign_Classifier.ipynb` in the section `Run Simulation Enviroment, Model and Other Utils`, these blocks, run the simulator and the drive file for you.
 
 #### 3. Submission code is usable and readable
 
-The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
+The `Traffic_Sign_Classifier.ipynb` notebook file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
 ### Model Architecture and Training Strategy
 
+The Data includes images and driving_log.csv files that path of the images. Each frame has 3 images which comes from left camera, centre camera and right camera. So, when reading driving_log.csv file each row has ‘center, left, right, steering, throttle, brake, speed’ columns. The three camera images (center, left, right) were used as input and steering as target.
+
+I used two function to load images, first one is read csv files and load by line by line. Return ‘lines[:1]’ because first line is header. Second one is load the images for using lines path. Steering (angle) is for centre image. So, if image is right image angle is a bit small value (-0.2), and right add a bit (+0.2).
+
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+For the actual network architecture, the Nvidia model is used because of its simplicity and demonstrated ability to perform well on self-driving car tasks. 
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+<img src="writeup_files/architecture_1.png" alt="drawing" width="300"/>   
+
+The network architecture implementation is fairly straightforward. First we have a Lambda layer that normalizes our input image. What follows are 5 Conv2d layers, each followed by a BatchNormalization and a ReLU Activation layer.
+
+After the 5 convolutional layers, these multidimensional layers are flattened into what can be thought of as a column vector and fed into 3 plain fully connected layers with the final layer outputting the predicted steering angle.
+
+<img src="writeup_files/architecture_2.JPG" alt="drawing" width="300"/>
 
 #### 2. Attempts to reduce overfitting in the model
 
@@ -141,29 +138,40 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
-![alt text][image2]
+<img src="writeup_files/stage_1(1).gif" alt="drawing" width="250"/>
+<img src="writeup_files/stage_1(2).gif" alt="drawing" width="250"/>
+<img src="writeup_files/stage_1(3).gif" alt="drawing" width="250"/>
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
 
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
+<img src="writeup_files/stage_1_03312019_img_l.gif" alt="drawing" width="250"/>
+<img src="writeup_files/stage_1_03312019_img_c.gif" alt="drawing" width="250"/>
+<img src="writeup_files/stage_1_03312019_img_r.gif" alt="drawing" width="250"/>
 
 Then I repeated this process on track two in order to get more data points.
 
+<img src="writeup_files/stage_1_03312019_img_l.gif" alt="drawing" width="250"/>
+<img src="writeup_files/stage_1_03312019_img_c.gif" alt="drawing" width="250"/>
+<img src="writeup_files/stage_1_03312019_img_r.gif" alt="drawing" width="250"/>
+
 To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
 
-![alt text][image6]
-![alt text][image7]
+<img src="writeup_files/stage_1_03312019_img_r.gif" alt="drawing" width="250"/>  
+<img src="writeup_files/stage_1_03312019_img_r.gif" alt="drawing" width="250"/>
 
 Etc ....
 
 After the collection process, I had X number of data points. I then preprocessed this data by ...
 
-
 I finally randomly shuffled the data set and put Y% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+
+<img src="writeup_files/dataset_stee_angles.png" alt="drawing" width="600"/>
+<img src="writeup_files/testing_stee_angles.png" alt="drawing" width="600"/>
+<img src="writeup_files/training_stee_angles.png" alt="drawing" width="600"/>
+<img src="writeup_files/training_loss_graph.png" alt="drawing" width="600"/>
 
 ---
 

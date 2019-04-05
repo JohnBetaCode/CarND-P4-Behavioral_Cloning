@@ -4,19 +4,17 @@
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
 
-<img src="writeup_files/stage_1(1).gif" alt="drawing" width="250"/>  
-<img src="writeup_files/stage_1(2).gif" alt="drawing" width="250"/>  
-<img src="writeup_files/stage_1(3).gif" alt="drawing" width="250"/>  
-
-<img src="writeup_files/stage_1_03312019_img_l.gif" alt="drawing" width="250"/>  
-<img src="writeup_files/stage_1_03312019_img_c.gif" alt="drawing" width="250"/>  
-<img src="writeup_files/stage_1_03312019_img_r.gif" alt="drawing" width="250"/>  
-
-
+<img src="writeup_files/stage_1(1).gif" alt="drawing" width="250"/>
+<img src="writeup_files/stage_1(2).gif" alt="drawing" width="250"/>
+<img src="writeup_files/stage_1(3).gif" alt="drawing" width="250"/>
 
 ## Overview
 
 In this project, I used what I've learned about deep neural networks and convolutional neural networks to clone driving behavior. I trained, validated and tested a model using Keras. The model outputs the steering angle to control an autonomous vehicle in a simulated enviorement.
+
+<img src="writeup_files/stage_1_03312019_img_l.gif" alt="drawing" width="250"/>
+<img src="writeup_files/stage_1_03312019_img_c.gif" alt="drawing" width="250"/>
+<img src="writeup_files/stage_1_03312019_img_r.gif" alt="drawing" width="250"/>
 
 The [simulator](https://github.com/udacity/self-driving-car-sim) is used to steer a car around a track, and for data collection. Image data were used with steering angles to train a neural network and then use the model to drive the car autonomously around the track.
 
@@ -26,8 +24,6 @@ To meet specifications, The following files are attached in this repository:
 * [drive.py](https://github.com/JohnBetaCode/CarND-P4-Behavioral_Cloning/blob/master/drive.py) (script to drive the car)
 * [model.h5](https://github.com/JohnBetaCode/CarND-P4-Behavioral_Cloning/blob/master/model/behavioral_model.h5) (a trained Keras model)
 * [video]() recording of the vehicle driving autonomously around the track for one full lap
-
-
 
 ## The Project
 
