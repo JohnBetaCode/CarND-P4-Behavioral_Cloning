@@ -6,28 +6,28 @@ Project Specification
 Behavioral Cloning
 
 Required Files
-    1 - Are all required files submitted?: The submission includes a model.py file, drive.py, model.h5 a writeup report and video.mp4.
+    (OK) - 1 - Are all required files submitted?: The submission includes a model.py file, drive.py, model.h5 a writeup report and video.mp4.
 
 Quality of Code
-    2 - Is the code functional?:The model provided can be used to successfully operate the simulation.
-    3 - Is the code usable and readable?: The code in model.py uses a Python generator, if needed, to generate data for training rather than storing the training data in memory. The model.py code is clearly organized and comments are included where needed.
+    (OK) - 2 - Is the code functional?:The model provided can be used to successfully operate the simulation.
+    (OK) - 3 - Is the code usable and readable?: The code in model.py uses a Python generator, if needed, to generate data for training rather than storing the training data in memory. The model.py code is clearly organized and comments are included where needed.
 
 Model Architecture and Training Strategy
-    4 - Has an appropriate model architecture been employed for the task?: The neural network uses convolution layers with appropriate filter sizes. Layers exist to introduce nonlinearity into the model. The data is normalized in the model.
-    5 - Has an attempt been made to reduce overfitting of the model?: Train/validation/test splits have been used, and the model uses dropout layers or other methods to reduce overfitting.
-    6 - Have the model parameters been tuned appropriately?: Learning rate parameters are chosen with explanation, or an Adam optimizer is used. 
-    7 - Is the training data chosen appropriately?: Training data has been chosen to induce the desired behavior in the simulation (i.e. keeping the car on the track).
+    (OK) - 4 - Has an appropriate model architecture been employed for the task?: The neural network uses convolution layers with appropriate filter sizes. Layers exist to introduce nonlinearity into the model. The data is normalized in the model.
+    (OK) - 5 - Has an attempt been made to reduce overfitting of the model?: Train/validation/test splits have been used, and the model uses dropout layers or other methods to reduce overfitting.
+    (OK) - 6 - Have the model parameters been tuned appropriately?: Learning rate parameters are chosen with explanation, or an Adam optimizer is used. 
+    (OK) - 7 - Is the training data chosen appropriately?: Training data has been chosen to induce the desired behavior in the simulation (i.e. keeping the car on the track).
 
 Architecture and Training Documentation
-    8 - Is the solution design documented?: The README thoroughly discusses the approach taken for deriving and designing a model architecture fit for solving the given problem.
-    9 - Is the model architecture documented?: The README provides sufficient details of the characteristics and qualities of the architecture, such as the type of model used, the number of layers, the size of each layer. Visualizations emphasizing particular qualities of the architecture are encouraged. Here is one such tool for visualization.
-    10 - Is the creation of the training dataset and training process documented?: The README describes how the model was trained and what the characteristics of the dataset are. Information such as how the dataset was generated and examples of images from the dataset must be included.
+    (OK) - 8 - Is the solution design documented?: The README thoroughly discusses the approach taken for deriving and designing a model architecture fit for solving the given problem.
+    (OK) - 9 - Is the model architecture documented?: The README provides sufficient details of the characteristics and qualities of the architecture, such as the type of model used, the number of layers, the size of each layer. Visualizations emphasizing particular qualities of the architecture are encouraged. Here is one such tool for visualization.
+    (OK) - 10 - Is the creation of the training dataset and training process documented?: The README describes how the model was trained and what the characteristics of the dataset are. Information such as how the dataset was generated and examples of images from the dataset must be included.
 
 Simulation
-    11 - Is the car able to navigate correctly on test data?: No tire may leave the drivable portion of the track surface. The car may not pop up onto ledges or roll over any surfaces that would otherwise be considered unsafe (if humans were in the vehicle).
+    (OK) - 11 - Is the car able to navigate correctly on test data?: No tire may leave the drivable portion of the track surface. The car may not pop up onto ledges or roll over any surfaces that would otherwise be considered unsafe (if humans were in the vehicle).
 
 Suggestions to Make Your Project Stand Out!
-    12 - The simulator contains two tracks. To meet specifications, the car must successfully drive around track one. Track two is more difficult. See if you can get the car to stay on the road for track two as well.
+    (OK) - 12 - The simulator contains two tracks. To meet specifications, the car must successfully drive around track one. Track two is more difficult. See if you can get the car to stay on the road for track two as well.
 
 
 https://medium.com/@erikshestopal/udacity-behavioral-cloning-using-keras-ff55055a64c
@@ -37,7 +37,7 @@ https://medium.com/deep-learning-turkey/behavioral-cloning-udacity-self-driving-
 **********************************************************************
 -->
 
-# **P3 - Behavioral Cloning** 
+# **P4 - Behavioral Cloning** 
 ### **Description**
 
 In this project, I used what I've learned about deep neural networks and convolutional neural networks to clone driving behavior. I trained, validated and tested a model using Keras. The model outputs the steering angle to control an autonomous vehicle in a simulated enviorement.
@@ -49,7 +49,7 @@ The goals / steps of this project are the following:
 * Build, a convolution neural network in Keras that predicts steering angles from images
 * Train and validate the model with a training and validation set
 * Test that the model successfully drives around track one without leaving the road
-* Summarize the results with a written report
+* Summarize the results with a written report  
 
 ---
 ### Files Submitted & Code Quality
@@ -68,7 +68,7 @@ Using the Udacity provided [simulator](https://github.com/udacity/self-driving-c
 ```sh
 python drive.py model.h5
 ```
-or you can run everything and much easier runing the final blocks in the `Traffic_Sign_Classifier.ipynb` in the section `Run Simulation Enviroment, Model and Other Utils`, these blocks, run the simulator and the drive file for you.
+or you can run everything and much easier running the final blocks in the `Traffic_Sign_Classifier.ipynb` in the section `Run Simulation Enviroment, Model and Other Utils`, these blocks, run the simulator and the `drive.py` file for you, also provide tools for screen recorder and others.
 
 #### 3. Submission code is usable and readable
 
@@ -76,9 +76,22 @@ The `Traffic_Sign_Classifier.ipynb` notebook file contains the code for training
 
 ### Model Architecture and Training Strategy
 
-The Data includes images and driving_log.csv files that path of the images. Each frame has 3 images which comes from left camera, centre camera and right camera. So, when reading driving_log.csv file each row has ‘center, left, right, steering, throttle, brake, speed’ columns. The three camera images (center, left, right) were used as input and steering as target.
+#### 1. Image Dataset
 
-I used two function to load images, first one is read csv files and load by line by line. Return ‘lines[:1]’ because first line is header. Second one is load the images for using lines path. Steering (angle) is for centre image. So, if image is right image angle is a bit small value (-0.2), and right add a bit (+0.2).
+The Data includes images and `driving_log.csv` files that path of the images. Each frame has 3 images which comes from left camera, centre camera and right camera. So, when reading `driving_log.csv` file each row has ‘center, left, right, steering, throttle, brake, speed’ columns. The three camera images (center, left, right) were used as input and steering as target.
+
+I used two functions to load images. `load_dataset()`, read the datasets information reading the csv files and load by line by line. this functions returns a list of dictionaries with the paths to center, left, and right images as the steering angle for these samples. The keys are `img_c` for central camera image, `img_l` for left camera image, `img_r` for right camera image, and `steering` for the steering angle value. 
+
+Second function `generator()` is used to read the datsets images from the previous dictionaries in batches and return them. The images captured in the car simulator are large, a size of 160 x 320 x 3 means that storing 10,000 simulator images would take over 1.5 GB. That's a lot of memory! Not to mention that preprocessing data can change data types from an int to a float, which can increase the size of the data by a factor of 4. `load_dataset()` is a generators, which is a great way to work with large amounts of data. Instead of storing the pre-processed data in memory all at once, using a generator you can pull pieces of the data and process them on the fly only when you need them, which is much more memory-efficient. A generator is like a coroutine, a process that can run separately from another main routine, which makes it a useful Python function. Instead of using return, the generator uses yield, which still returns the desired output values but saves the current values of all the generator's variables. When the generator is called a second time it re-starts right after the yield statement, with all its variables set to the same values as before.
+
+#### 2. Creation of the Training Set
+
+
+
+
+
+
+
 
 #### 1. An appropriate model architecture has been employed
 
