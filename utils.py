@@ -159,7 +159,9 @@ def reproduce_dataset(fps=15., loop=True, sc_fc=2., up_limit=0,
             if reproduce:
                 imgs = []
                 for label in cam_labels:
+                    print(data[idx][label])
                     img = cv2.imread(data[idx][label])
+                    cv2.imshow("caca", img); cv2.waitKey(0)
                     if up_limit or down_limit:
                         # Draw superior limit
                         img2 = cv2.rectangle(img.copy(),(0,0),(img.shape[1], up_limit),(0,0,0), -1)
