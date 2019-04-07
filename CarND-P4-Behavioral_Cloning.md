@@ -56,8 +56,9 @@ My project includes the following files:
 * The [`utils.py`](https://github.com/JohnBetaCode/CarND-P4-Behavioral_Cloning/blob/master/utils.py) with utils function to visualize and train the datasets.
 * The [`drive.py`](https://github.com/JohnBetaCode/CarND-P4-Behavioral_Cloning/blob/master/drive.py) for driving the car in autonomous mode.
 * The [`behavioral_model.h5`](https://github.com/JohnBetaCode/CarND-P4-Behavioral_Cloning/blob/master/model/behavioral_model.h5) file containing a trained convolution neural network. 
-* The [`driving_track_1.mp4`](https://youtu.be/LeTQwCUofuY) video with autonomous driving over track 1.
-<!-- * The [`driving_track_2.mp4`](PUT LINK HERE) video with autonomous driving over track 2. -->
+* The [`driving_track_1.mp4`](https://github.com/JohnBetaCode/CarND-P4-Behavioral_Cloning/blob/master/driving_track_1.mp4) video with autonomous driving over track 1.
+* The [`driving_track_2.mp4`](https://github.com/JohnBetaCode/CarND-P4-Behavioral_Cloning/blob/master/driving_track_2.mp4) video with autonomous driving over track 2.
+* The [`driving_track_1&2.mp4`](https://github.com/JohnBetaCode/CarND-P4-Behavioral_Cloning/blob/master/driving_track_1&2.mp4) video with autonomous driving over track 1 and 2, perspective view from central camera.
 
 #### 2. Submission Includes Functional Code
 Using the Udacity provided [simulator](https://github.com/udacity/self-driving-car-sim) and my `drive.py` file, the car can be driven autonomously around the track by executing:
@@ -163,8 +164,8 @@ After the full connected layer, the model contains dropout layers in order to re
 
 #### 8. Model Parameter Tuning
 
-        EPOCHS - No of epochs= 50
-        BATCH_SIZE - Generator batch size= 32
+        EPOCHS - No of epochs= 20
+        BATCH_SIZE - Generator batch size= 128
         CORRECTION - Correction factor- 0.2
         UP_LIMIT = 65 Up Horizontal limits to crop images
         DOWN_LIMIT = 20 Down Horizontal limits to crop dataset
@@ -181,11 +182,12 @@ The final step was to run the simulator to see how well the car was driving arou
 At the end of the process, the vehicle is able to drive autonomously around the track one and two without leaving the road.
 
 #### 10. Video Results
-* [`P4-Behavioral_Cloning-Track_1-Udacity`](https://youtu.be/LeTQwCUofuY)  
-* [`P4-Behavioral_Cloning-Track_2-Udacity`](https://youtu.be/LeTQwCUofuY)  
+* [`CarND-P4-Behavioral_Cloning-Track_1-Center_Camera-Udacity`](https://youtu.be/LeTQwCUofuY)  
+* [`CarND-P4-Behavioral_Cloning-Track_2-Center_Camera-Udacity`](https://youtu.be/oXsQAJtn6zg)  
+* [`CarND-P4-Behavioral_Cloning-Track_1&2-Center_Camera-Udacity`](https://www.youtube.com/watch?v=vC5pB9lv0DE) 
 
 ---
-> **Date:** &nbsp; 04/06/2019  
+> **Date:** &nbsp; 04/07/2019  
 > **Programmer:** &nbsp;John A. Betancourt G.   
 > **Mail:** &nbsp;john.betancourt93@gmail.com  
 > **Web:** &nbsp; www.linkedin.com/in/jhon-alberto-betancourt-gonzalez-345557129 

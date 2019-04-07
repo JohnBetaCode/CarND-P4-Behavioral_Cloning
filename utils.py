@@ -159,9 +159,7 @@ def reproduce_dataset(fps=15., loop=True, sc_fc=2., up_limit=0,
             if reproduce:
                 imgs = []
                 for label in cam_labels:
-                    print(data[idx][label])
                     img = cv2.imread(data[idx][label])
-                    cv2.imshow("caca", img); cv2.waitKey(0)
                     if up_limit or down_limit:
                         # Draw superior limit
                         img2 = cv2.rectangle(img.copy(),(0,0),(img.shape[1], up_limit),(0,0,0), -1)
@@ -263,21 +261,16 @@ def create_model_result_video(src_path, dst_path="", save_name="model_results_ca
     Returns: 
     """
 
-    # Check for images extensions
-    extensions = ["jpg","gif","png","tga"]
-
-    # Load images in 'path'
-    imgs_path_list = [item for i in [glob.glob(src_path+'/*.%s' % ext) for ext in extensions] for item in i]
-    
     # Define the codec and format and create VideoWriter object
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")  # Codec H264, format MP4
     video_name = os.path.join(dst_path, save_name) # File name and format
     video_out = cv2.VideoWriter(video_name, fourcc, fps, video_size) # Video recorder variable
 
-    for imgs_path in imgs_path_list:
+    for index, filename in enumerate(sorted(os.listdir(src_path))):
         
         # Read image and write it to video
-        img = cv2.imread(os.path.join(imgs_path))
+        img_path = os.path.join(src_path, filename)
+        img = cv2.imread(img_path)
         video_out.write(cv2.resize(img, video_size))
 
     # Release video variable memory
